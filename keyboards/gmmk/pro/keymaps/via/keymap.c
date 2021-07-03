@@ -64,13 +64,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-void rgb_matrix_indicators_user(void) {
-    if (host_keyboard_led_state().caps_lock) {
-      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-        if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {
-            rgb_matrix_set_color( i, 255, 0, 0 );
+// Capslock indicator on the side lights.
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
+        for (uint8_t i = 82; i < 98; i++) {
+            rgb_matrix_set_color(i, RGB_RED);
         }
-      }
     }
 }
 
