@@ -24,8 +24,8 @@ enum my_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-//      ESC      F1       F2       F3       F4       F5       F6       F7       F8       F9       F10      F11      F12	     Prt           Rotary(Mute)
-//      ~        1        2        3        4        5        6        7        8        9        0         -       (=)	     BackSpc           Del
+//      ESC      F1       F2       F3       F4       F5       F6       F7       F8       F9       F10      F11      F12	     Del           Rotary(Mute)
+//      ~        1        2        3        4        5        6        7        8        9        0         -       (=)	     BackSpc           Home
 //      Tab      Q        W        E        R        T        Y        U        I        O        P        [        ]        \                 PgUp
 //      Caps     A        S        D        F        G        H        J        K        L        ;        "                 Enter             PgDn
 //      Sh_L              Z        X        C        V        B        N        M        ,        .        ?                 Sh_R     Up       End
@@ -73,13 +73,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RGB_STA:
-            rgb_matrix_mode(RGB_MATRIX_CUSTOM_indicator_static);
+            if (record->event.pressed) {
+                rgb_matrix_mode(RGB_MATRIX_CUSTOM_indicator_static);
+            }
             return false; // Skip all further processing of this key
         case RGB_GRA:
-            rgb_matrix_mode(RGB_MATRIX_CUSTOM_indicator_gradient);
+            if (record->event.pressed) {
+                rgb_matrix_mode(RGB_MATRIX_CUSTOM_indicator_gradient);
+            }
             return false; // Skip all further processing of this key
         case RGB_CYC:
-            rgb_matrix_mode(RGB_MATRIX_CUSTOM_indicator_cycle_all);
+            if (record->event.pressed) {
+                rgb_matrix_mode(RGB_MATRIX_CUSTOM_indicator_cycle_all);
+            }
             return false; // Skip all further processing of this key
         default:
             return true; // Process all other keycodes normally
