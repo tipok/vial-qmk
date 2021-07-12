@@ -1,0 +1,3 @@
+#pragma once
+#define VIA_CUSTOM_LIGHTING_ENABLE
+#define VIA_QMK_RGBLIGHT_ENABLE
